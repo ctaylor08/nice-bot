@@ -33,7 +33,7 @@ class Listener(StreamListener):
                 return True
         
     def on_error(self, status):
-        print(status)
+        logging.warning(status)
         
 auth = OAuthHandler(twitter_auth['ckey'], twitter_auth['csecret'])
 auth.set_access_token(twitter_auth['atkn'], twitter_auth['asecret'])
