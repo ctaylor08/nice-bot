@@ -5,7 +5,7 @@ from nltk.classify.scikitlearn import SklearnClassifier
 from sklearn.naive_bayes import MultinomialNB, BernoulliNB
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.svm import SVC, LinearSVC, NuSVC
-from nltk.classify import ClassifierI
+from nltk.classify import DecisionTreeClassifier, MaxentClassifier, ClassifierI
 from statistics import mode
 import random
 
@@ -69,6 +69,12 @@ class VoteClassifier(ClassifierI):
 classifier = nltk.NaiveBayesClassifier.train(training_set)
 print("Original Naive Bayes Algo accuracy percent:", (nltk.classify.accuracy(classifier, testing_set))*100)
 classifier.show_most_informative_features(15)
+
+#DT_classifier = DecisionTreeClassifier.train(training_set)
+#print("DT_classifier accuracy percent:", (nltk.classify.accuracy(DT_classifier, testing_set))*100)
+
+ME_classifier = MaxentClassifier.train(training_set)
+print("ME_classifier accuracy percent:", (nltk.classify.accuracy(ME_classifier, testing_set))*100)
 
 MNB_classifier = SklearnClassifier(MultinomialNB())
 MNB_classifier.train(training_set)
