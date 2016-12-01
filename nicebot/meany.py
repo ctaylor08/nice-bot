@@ -1,12 +1,20 @@
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 
 class meany(object):
     
     def __init__(self, text):
         self.text = text
+        self.tokened = word_tokenize(text)
+        self.filtered = [word for word in self.tokened if word.lower() not in set(stopwords.words('english')]
+        self.ps = PorterStemmer()
+        self.stemmed = [self.ps.stem(word) for word in self.filtered]
+        self.pos = pos_tag(self.filtered)
         self.mean = False
         self.mean_lvl = None
         self.analyzed = False
-        
+    
     def is_mean(self):
         '''
         Determines if the self.text is mean or not
